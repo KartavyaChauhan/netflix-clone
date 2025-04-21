@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Games Page</title>
+    <style>
+      body {
+        color: white;
+        min-height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background: #333;
+      }
+      .background-section {
+        background-image: url("https://assets.bwbx.io/images/users/iqjWHBFdfxIU/ioUPyn34M7Hc/v0/-1x-1.jpg");
+        width: 100%;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .separation {
+        height: 11px;
+        width: 100%;
+        background-color: rgb(65, 64, 64);
+      }
+      .content-section {
+        width: 100%;
+        padding: 2%;
+        background: black;
+        text-align: center;
+      }
+      input,
+      button {
+        padding: 10px;
+        margin: 10px;
+        font-size: 16px;
+        color: white;
+        background-color: rgba(23, 23, 23, 0.7);
+        border: 1px solid rgba(246, 238, 238, 0.5);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="background-section"></div>
+    <div class="separation"></div>
+    <div class="content-section">
+      <input type="text" id="movieInput" placeholder="Enter a movie name" />
+      <button onclick="addToCart()">Add to Cart</button>
+      <button onclick="submitCart()">Submit Cart</button>
+      <div id="cartList"></div>
+    </div>
+  </body>
+  <script>
+    localStorage.removeItem("cart"); 
+    let cart = [];
+  
+    function addToCart() {
+      const movieName = document.getElementById("movieInput").value;
+      if (movieName) {
+        cart.push(movieName);
+        document.getElementById("movieInput").value = "";
+        updateCartDisplay();
+      }
+    }
+  
+    function updateCartDisplay() {
+      const list = document.getElementById("cartList");
+      list.innerHTML = "";
+      cart.forEach((movie) => {
+        const item = document.createElement("div");
+        item.textContent = movie;
+        list.appendChild(item);
+      });
+    }
+  
+    function submitCart() {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      window.location.href = "cart_summary.html";
+    }
+  </script>
+  
+</html>

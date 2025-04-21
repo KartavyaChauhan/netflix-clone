@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cart Summary</title>
+    <style>
+      body {
+        background-image: url(https://images.pond5.com/shopping-cart-background-presentation-footage-075835137_prevstill.jpeg);
+        color: #021aff;
+        padding: 20px;
+        font-size: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Movies Added</h1>
+    <div id="cartContents"></div>
+    <script>
+      const cart = JSON.parse(localStorage.getItem("cart"));
+      const contents = document.getElementById("cartContents");
+      cart.forEach((movie) => {
+        const item = document.createElement("p");
+        item.textContent = movie;
+        contents.appendChild(item);
+      });
+    </script>
+  </body>
+</html>
